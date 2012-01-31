@@ -1,5 +1,6 @@
 package com.example.jeedemo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -43,7 +44,12 @@ public class WydzialManager {
 	public List<Wydzial> getAvailableWydzial() {
 	return em.createNamedQuery("wydzial.all").getResultList();
 	}
-
+	public List<Student> getOwnedStudent(Wydzial wydzial) {
+		wydzial = em.find(Wydzial.class, wydzial.getId());
+		// lazy loading here - try this code without this (shallow) copying
+		List<Student> student = new ArrayList<Student>(wydzial.getStudent());
+		return student;
+	}
 	public void disposeWydzial(Student student, Wydzial wydzial) {
 
 		student = em.find(Student.class, student.getId());

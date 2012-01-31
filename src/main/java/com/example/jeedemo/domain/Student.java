@@ -19,7 +19,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Min;
 @Entity
 @NamedQueries({ 
 	@NamedQuery(name = "student.all", query = "Select p from Student p")
@@ -46,6 +48,7 @@ public class Student {
 	}
 	
 	@Size(min = 2, max = 20)
+	@Pattern(regexp = "[A-Z][a-z]+")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -53,6 +56,7 @@ public class Student {
 		this.firstName = firstName;
 	}
 	@Size(min = 2, max = 20)
+	@Pattern(regexp = "[A-Z][a-z]+")
 	public String getLastName() {
 		return lastName;
 	}
@@ -67,6 +71,7 @@ public class Student {
 		this.pin = pin;
 	}
 	@Size(min = 2)
+	@Pattern(regexp = "[0-9]{6}")
 	public String getIndeks() {
 		return indeks;
 	}
@@ -75,6 +80,7 @@ public class Student {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@Past
 	public Date getdateOfBirth() {
 		return dateOfBirth;
 	}

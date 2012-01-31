@@ -1,10 +1,19 @@
 package com.example.jeedemo.web;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.ListDataModel;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,7 +23,7 @@ import com.example.jeedemo.domain.Student;
 import com.example.jeedemo.service.AdresManager;
 import com.example.jeedemo.service.StudentManager;
 import com.example.jeedemo.service.WydzialManager;
-
+import org.richfaces.validator.NullValueValidator;
 @SessionScoped
 @Named("studentBean")
 public class StudentFormBean implements Serializable {
@@ -98,4 +107,58 @@ public class StudentFormBean implements Serializable {
 		sm.disposeWydzial(studentToShow, wydzialToDispose);
 		return null;
 	}
+	public void uniquePin(FacesContext context, UIComponent component,
+			Object value) {
+
+			String pin = (String) value;
+
+			for (Student student : pm.getAllStudents()) {
+			if (student.getPin().equals(pin)) {
+			FacesMessage message = new FacesMessage(
+			"Student z tym Pinem juz istnieje w bazie danych");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(message);
+			}
+			}
+			}
+	public void uniqueIndeks(FacesContext context, UIComponent component,
+			Object value) {
+
+			String indeks = (String) value;
+
+			for (Student student : pm.getAllStudents()) {
+			if (student.getIndeks().equals(indeks)) {
+			FacesMessage message = new FacesMessage(
+			"Student z tym Indeksem juz istnieje w bazie danych");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(message);
+			}
+			}
+			}
+			// Multi field validation with <f:event>
+			// Rule: first two digits of PIN must match last two digits of the year of
+			// birth
+			public void validatePinDob(ComponentSystemEvent event) {
+
+			UIForm form = (UIForm) event.getComponent();
+			UIInput pin = (UIInput) form.findComponent("pin");
+			UIInput dateOfBirth = (UIInput) form.findComponent("dateOfBirth");
+
+			if (pin.getValue() != null && dateOfBirth .getValue() != null
+			&& pin.getValue().toString().length() >= 2) {
+			String twoDigitsOfPin = pin.getValue().toString().substring(0, 2);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(((Date) dateOfBirth .getValue()));
+
+			String lastDigitsOfDob = ((Integer) cal.get(Calendar.YEAR))
+			.toString().substring(2);
+
+			if (!twoDigitsOfPin.equals(lastDigitsOfDob)) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(form.getClientId(), new FacesMessage(
+			"PIN nie pasuje do roku urodzin"));
+			context.renderResponse();
+			}
+			}
+			}
 }

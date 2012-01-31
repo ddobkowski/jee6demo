@@ -1,14 +1,14 @@
 body {
    margin: 0;
    padding: 0;
-   background-color:  lightGray;
+   background-color: #E0FFFF;
    font-family: Verdana, sans-serif;
    font-size: 0.9em;
 }
 
 .heading {
   padding: 10px;
-  background: #FFFFFF;
+  background: #736AFF;
   border: 1px solid blue;
   font-size: 1.4em;
   font-style: italic;
@@ -31,7 +31,7 @@ body {
   left: 10px;
   height: 80%;
   width: 200px;
-  background: #FFFFFF;
+  background: #9AFEFF;
   top: 90px;
 }
 
@@ -40,9 +40,9 @@ body {
   padding-left: 20px;
   padding-bottom: 20px;
   border: thin solid blue;
-  background: #FFFFFF;	
+  background: #FDEEF4;
   position:absolute;
-  left: 225px; 
+  left: 225px;
   right: 65px;
   top: 90px;
   height: 80%;

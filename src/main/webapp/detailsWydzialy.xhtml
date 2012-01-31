@@ -7,38 +7,39 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{studentBean.allStudents}" var="item">
-				<f:facet name="header">#{msg.personAllLabel}</f:facet>
+			<h:dataTable value="#{wydzialBean.ownedStudent}" var="item">
+				<f:facet name="header">Studenci na tym wydziale</f:facet>
 				<h:column>
 					<f:facet name="header">#{msg.personFirstNameLabel}</f:facet>
 					<h:outputText value="#{item.firstName}" />
 				</h:column>
-	<h:column>
+				<h:column>
 					<f:facet name="header">#{msg.StudentLastNameLabel}</f:facet>
 					<h:outputText value="#{item.lastName}" />
 				</h:column>
-				<h:column>
+							<h:column>
 					<f:facet name="header">#{msg.personPinLabel}</f:facet>
 					<h:outputText value="#{item.pin}" />
-				</h:column>
-					<h:column>
+				</h:column>	
+								<h:column>
 					<f:facet name="header">#{msg.personDobLabel}</f:facet>
 					<h:outputText value="#{item.dateOfBirth}" />
 				</h:column>
-					<h:column>
+								<h:column>
 					<f:facet name="header">#{msg.StudentIndeksLabel}</f:facet>
 					<h:outputText value="#{item.indeks}" />
 				</h:column>
 
+
 				<h:column>
 					<f:facet name="header">#{msg.action}</f:facet>
 					<h:commandLink value="#{msg.actionDelete}"
-						action="#{studentBean.deleteStudent}" />
-					<h:commandLink value=" Details " action="#{studentBean.showDetails}"/>
+						action="#{wydzialBean.disposeStudent}" />
 				</h:column>
 
 			</h:dataTable>
 		</h:form>
+		
 
 	</ui:define>
 

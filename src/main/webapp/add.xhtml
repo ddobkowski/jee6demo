@@ -9,26 +9,30 @@
 
 	<ui:define name="content">
 		<h:form id="personForm">
+		<f:event type="postValidate" listener="#{studentBean.validatePinDob}" />
 			<h:panelGrid columns="2">
 
 				<h:outputText value="#{msg.personFirstNameLabel}" />
 				<h:inputText id="firstName" value="#{studentBean.student.firstName}"
 					required="#{true}" />
-					<h:outputText value="#{msg.personFirstNameLabel}" />
+					<h:outputText value="#{msg.StudentLastNameLabel}" />
 				<h:inputText id="lastName" value="#{studentBean.student.lastName}"
 					required="#{true}" />
 
 				<h:outputText value="#{msg.personPinLabel}" />
-				<h:inputText id="pin" value="#{studentBean.student.pin}" />
-
-				<h:outputText value="Registration date" />
+				<h:inputText id="pin" value="#{studentBean.student.pin}" 
+				validator="#{studentBean.uniquePin}" required="#{true}">
+				<f:validator validatorId="pinValidator" />
+				</h:inputText>
+				<h:outputText value="#{msg.personDobLabel}" />
 				<rich:calendar value="#{studentBean.student.dateOfBirth}"
-					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+					id="dateOfBirth" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
 					style="width:200px">
 				</rich:calendar>
-				<h:outputText value="#{msg.personPinLabel}" />
-				<h:inputText id="indeks" value="#{studentBean.student.indeks}" />
-				
+				<h:outputText value="#{msg.StudentIndeksLabel}" />
+				<h:inputText id="indeks" value="#{studentBean.student.indeks}" validator="#{studentBean.uniqueIndeks}" required="#{true}">
+				</h:inputText>
+			
 			</h:panelGrid>
 
 			<h:commandButton value="#{msg.personFormOKButton}"

@@ -1,9 +1,15 @@
 package com.example.jeedemo.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
 @Entity
@@ -13,6 +19,7 @@ public class Wydzial {
 	private Long id;
 	private String nazwa;
 	private String skrot;
+	private List<Student> student = new ArrayList<Student>();
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
@@ -33,5 +40,11 @@ public class Wydzial {
 	public void setNazwa(String nazwa) {
 		this.nazwa = nazwa;
 	}
-
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<Student> getStudent() {
+		return student;
+	}
+	public void setStudent(List<Student> student) {
+		this.student = student;
+	}
 }

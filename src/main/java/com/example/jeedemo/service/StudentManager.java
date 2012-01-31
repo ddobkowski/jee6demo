@@ -64,4 +64,22 @@ public class StudentManager {
 		
 		
 	}
+	public void disposeStudent(Student student, Wydzial wydzial) {
+
+		student = em.find(Student.class, student.getId());
+		wydzial = em.find(Wydzial.class, wydzial.getId());
+
+		Student toRemove = null;
+		// lazy loading here (person.getCars)
+		for (Student aStudent : wydzial.getStudent())
+			if (aStudent.getId().compareTo(student.getId()) == 0) {
+				toRemove = aStudent;
+				break;
+			}
+
+		if (toRemove != null)
+			wydzial.getStudent().remove(toRemove);
+		
+		
+	}
 }

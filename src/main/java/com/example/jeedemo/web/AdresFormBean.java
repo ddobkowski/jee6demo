@@ -65,7 +65,7 @@ public class AdresFormBean implements Serializable {
 	
 	public String showDetails() {
 		adresToShow = adresy.getRowData();
-		return "details";
+		return "detailsAdresy";
 	}
 	
 	public String disposeStudent(){

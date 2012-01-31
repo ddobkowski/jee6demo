@@ -22,6 +22,8 @@ public class WydzialFormBean implements Serializable {
 	private Wydzial wydzial = new Wydzial();
 	private ListDataModel<Wydzial> wydzialy = new ListDataModel<Wydzial>();
 	private Wydzial wydzialToShow = new Wydzial();
+	private ListDataModel<Student> studenci = new ListDataModel<Student>();
+
 	@Inject
 	private WydzialManager sm;
 
@@ -61,7 +63,10 @@ public class WydzialFormBean implements Serializable {
 		wydzialy.setWrappedData(sm.getAvailableWydzial());
 		return wydzialy;
 	}
-
+	public ListDataModel<Student> getOwnedStudent() {
+		studenci.setWrappedData(sm.getOwnedStudent(wydzialToShow));
+		return studenci;
+	}
 	public String przypiszWydzial() {
 		sm.przypiszWydzial(studentId,  wydzialId);
 		return null;
@@ -81,6 +86,11 @@ public class WydzialFormBean implements Serializable {
 		
 		public String showDetails() {
 			wydzialToShow = wydzialy.getRowData();
-			return "details";
+			return "detailsWydzialy";
+		}
+		public String disposeStudent(){
+			Student studentToDispose = studenci.getRowData();
+			pm.disposeStudent( studentToDispose, wydzialToShow);
+			return null;
 		}
 	}
