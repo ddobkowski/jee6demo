@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.example.jeedemo.domain.Adres;
 import com.example.jeedemo.domain.Wydzial;
 import com.example.jeedemo.domain.Student;
 
@@ -37,5 +38,30 @@ public class StudentManager {
 		List<Wydzial> wydzial = new ArrayList<Wydzial>(student.getWydzial());
 		return wydzial;
 	}
+	public void adresStudent(Long studentId, Long adresId) {
 
+		Student student = em.find(Student.class, studentId);
+		Adres adres = em.find(Adres.class, adresId);
+		
+
+		adres.getStudent().add(student);
+	}
+	public void disposeAdres(Student student, Adres adres) {
+
+		student = em.find(Student.class, student.getId());
+		adres = em.find(Adres.class, adres.getId());
+
+		Student toRemove = null;
+		// lazy loading here (person.getCars)
+		for (Student aStudent : adres.getStudent())
+			if (aStudent.getId().compareTo(student.getId()) == 0) {
+				toRemove = aStudent;
+				break;
+			}
+
+		if (toRemove != null)
+			adres.getStudent().remove(toRemove);
+		
+		
+	}
 }

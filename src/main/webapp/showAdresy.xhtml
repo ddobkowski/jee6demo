@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{adresBean.allAdresy}" var="item">
+				<f:facet name="header">#{msg.AdresAllLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.AdresUlicaLabel}</f:facet>
+					<h:outputText value="#{item.ulica}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.AdresMiejscowoscLabel}</f:facet>
+					<h:outputText value="#{item.miejscowosc}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.AdresKrajLabel}</f:facet>
+					<h:outputText value="#{item.kraj}" />
+				</h:column>
+								<h:column>
+					<f:facet name="header">#{msg.personZipCodeLabel}</f:facet>
+					<h:outputText value="#{item.zipCode}" />
+				</h:column>
+								<h:column>
+					<f:facet name="header">#{msg.AdresUlicaNrLabel}</f:facet>
+					<h:outputText value="#{item.ulicanr}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{adresBean.deleteAdres}" />
+					<h:commandLink value=" Details " action="#{adresBean.showDetails}"/>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

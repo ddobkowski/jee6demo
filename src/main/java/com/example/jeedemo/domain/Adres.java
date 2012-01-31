@@ -14,27 +14,26 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({ 
-	@NamedQuery(name = "student.all", query = "Select p from Student p")
+	@NamedQuery(name = "adres.all", query = "Select a from Adres a")
 })
-public class Student {
+public class Adres {
 
 	private Long id;
 
-	private String firstName = "unknown";
-	private String lastName = "unknown";
-	private String pin = "";
-	private Date dateOfBirth = new Date();
-	private String indeks="";
-	
+	private String ulica = "unknown";
+	private String miejscowosc = "unknown";
+	private String kraj = "unknown";
+	private String zipCode = "";
+	private String ulicanr="";
+	private List<Student> student = new ArrayList<Student>();
 	private boolean editable;
-	private List<Wydzial> wydzial = new ArrayList<Wydzial>();
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,50 +45,51 @@ public class Student {
 	}
 	
 	@Size(min = 2, max = 20)
-	public String getFirstName() {
-		return firstName;
+	public String getUlica() {
+		return ulica;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUlica(String ulica) {
+		this.ulica = ulica;
 	}
 	@Size(min = 2, max = 20)
-	public String getLastName() {
-		return lastName;
+	public String getMiejscowosc() {
+		return miejscowosc;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	@Size(min = 2)
-	public String getPin() {
-		return pin;
-	}
-	public void setPin(String pin) {
-		this.pin = pin;
+	public void setMiejscowosc(String miejscowosc) {
+		this.miejscowosc = miejscowosc;
 	}
 	@Size(min = 2)
-	public String getIndeks() {
-		return indeks;
+	public String getKraj() {
+		return kraj;
 	}
-	public void setIndeks(String indeks ) {
-		this.indeks = indeks;
+	public void setKraj(String kraj) {
+		this.kraj = kraj;
+	}
+	@Size(min = 2)
+	public String getUlicanr() {
+		return ulicanr;
+	}
+	public void setUlicanr(String ulicanr ) {
+		this.ulicanr = ulicanr;
 	}
 
-	@Temporal(TemporalType.DATE)
-	public Date getdateOfBirth() {
-		return dateOfBirth;
+	@Size(min = 2)
+	public String getZipCode() {
+		return zipCode;
 	}
-	public void setdateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	// Be careful here, both with lazy and eager fetch type
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	public List<Wydzial> getWydzial() {
-		return wydzial;
+	public List<Student> getStudent() {
+		return student;
 	}
-	public void setWydzial(List<Wydzial> wydzial) {
-		this.wydzial = wydzial;
+	public void setStudent(List<Student> student) {
+		this.student = student;
 	}
+
 
 	public boolean isEditable() {
 		return editable;

@@ -11,22 +11,22 @@
 		<h:form id="personForm">
 			<h:panelGrid columns="2">
 
-				<h:outputText value=" Person " />
-				<h:selectOneMenu value="#{saleBean.personId}">
-					<f:selectItems value="#{saleBean.allPersons}" var="person"
-						itemValue="#{person.id}" itemLabel="#{person.firstName}" />
+				<h:outputText value=" Student " />
+				<h:selectOneMenu value="#{wydzialBean.studentId}">
+					<f:selectItems value="#{wydzialBean.allStudents}" var="student"
+						itemValue="#{student.id}" itemLabel="#{student.firstName}" />
 				</h:selectOneMenu>
 
-				<h:outputText value=" Car" />
-				<h:selectOneMenu value="#{saleBean.carId}">
-					<f:selectItems value="#{saleBean.availableCars}" var="car"
-						itemValue="#{car.id}" itemLabel="#{car.make} #{car.model}" />
+				<h:outputText value="Wydzial" />
+				<h:selectOneMenu value="#{wydzialBean.studentId}">
+					<f:selectItems value="#{wydzialBean.availableWydzial}" var="wydzial"
+						itemValue="#{wydzial.id}" itemLabel="#{wydzial.skrot} #{wydzial.nazwa}" />
 				</h:selectOneMenu>
 
 
 			</h:panelGrid>
 
-			<h:commandButton value="Sell" action="#{saleBean.sellCar}" />
+			<h:commandButton value="Przypisz" action="#{wydzialBean.przypiszWydzial}" />
 
 			<h:panelGrid>
 				<h:messages id="messages" showDetail="#{true}"

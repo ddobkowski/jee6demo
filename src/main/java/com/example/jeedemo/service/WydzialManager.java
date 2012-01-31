@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.example.jeedemo.domain.Adres;
 import com.example.jeedemo.domain.Wydzial;
 import com.example.jeedemo.domain.Student;
 
@@ -20,6 +21,15 @@ public class WydzialManager {
 	@PersistenceContext
 	EntityManager em;
 
+	public void addWydzial(Wydzial wydzial) {
+		wydzial.setId(null);
+		em.persist(wydzial);
+	}
+
+	public void deleteWydzial(Wydzial wydzial) {
+		wydzial = em.find(Wydzial.class, wydzial.getId());
+		em.remove(wydzial);
+	}
 	public void przypiszWydzial(Long studentId, Long wydzialId) {
 
 		Student student = em.find(Student.class, studentId);
@@ -29,7 +39,10 @@ public class WydzialManager {
 		student.getWydzial().add(wydzial);
 	}
 
-
+	@SuppressWarnings("unchecked")
+	public List<Wydzial> getAvailableWydzial() {
+	return em.createNamedQuery("wydzial.all").getResultList();
+	}
 
 	public void disposeWydzial(Student student, Wydzial wydzial) {
 

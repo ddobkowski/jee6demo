@@ -12,21 +12,27 @@
 			<h:panelGrid columns="2">
 
 				<h:outputText value="#{msg.personFirstNameLabel}" />
-				<h:inputText id="firstName" value="#{personBean.person.firstName}"
+				<h:inputText id="firstName" value="#{studentBean.student.firstName}"
+					required="#{true}" />
+					<h:outputText value="#{msg.personFirstNameLabel}" />
+				<h:inputText id="lastName" value="#{studentBean.student.lastName}"
 					required="#{true}" />
 
 				<h:outputText value="#{msg.personPinLabel}" />
-				<h:inputText id="pin" value="#{personBean.person.pin}" />
+				<h:inputText id="pin" value="#{studentBean.student.pin}" />
 
 				<h:outputText value="Registration date" />
-				<rich:calendar value="#{personBean.person.registrationDate}"
+				<rich:calendar value="#{studentBean.student.dateOfBirth}"
 					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
 					style="width:200px">
 				</rich:calendar>
+				<h:outputText value="#{msg.personPinLabel}" />
+				<h:inputText id="indeks" value="#{studentBean.student.indeks}" />
+				
 			</h:panelGrid>
 
 			<h:commandButton value="#{msg.personFormOKButton}"
-				action="#{personBean.addPerson}" />
+				action="#{studentBean.addStudent}" />
 
 			<h:panelGrid>
 				<h:messages for="" />

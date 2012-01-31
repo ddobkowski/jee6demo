@@ -15,9 +15,29 @@
 		  <h:commandLink action="add?faces-redirect=true">
 			<h:outputText value="#{msg.personAddLabel}" />
 		  </h:commandLink></li>
+		
+			<li>
+		  <h:commandLink action="addAdres?faces-redirect=true">
+			<h:outputText value="#{msg.AdresAddLabel}" />
+		  </h:commandLink></li>
+		
+			<li>
+		  <h:commandLink action="addWydzial?faces-redirect=true">
+			<h:outputText value="#{msg.WydzialAddLabel}" />
+		  </h:commandLink></li>
 		<li>
-		  <h:commandLink action="showPersons?faces-redirect=true">
+		  <h:commandLink action="showStudents?faces-redirect=true">
 			 <h:outputText value="#{msg.personAllLabel}" />
+		  </h:commandLink>
+		</li>
+			<li>
+		  <h:commandLink action="showAdresy?faces-redirect=true">
+			 <h:outputText value="#{msg.AdresAllLabel}" />
+		  </h:commandLink>
+		</li>
+			<li>
+		  <h:commandLink action="showWydzialy?faces-redirect=true">
+			 <h:outputText value="#{msg.WydzialAllLabel}" />
 		  </h:commandLink>
 		</li>
 		<li>

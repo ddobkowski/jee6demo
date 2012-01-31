@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="adresForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="#{msg.AdresUlicaLabel}" />
+				<h:inputText id="ulica" value="#{adresBean.adres.ulica}"
+					required="#{true}" />
+					<h:outputText value="#{msg.AdresMiejscowoscLabel}" />
+				<h:inputText id="miejscowosc" value="#{adresBean.adres.miejscowosc}"
+					required="#{true}" />
+
+				<h:outputText value="#{msg.AdresKrajLabel}" />
+				<h:inputText id="kraj" value="#{adresBean.adres.kraj}" />
+
+				<h:outputText value="#{msg.personZipCodeLabel}" />
+			<h:inputText id="zipCode" value="#{adresBean.adres.zipCode}" />
+			<h:outputText value="#{msg.AdresUlicaNrLabel}" />
+			<h:inputText id="ulicanr" value="#{adresBean.adres.ulicanr}" />
+				
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.personFormOKButton}"
+				action="#{adresBean.addAdres}" />
+
+			<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
