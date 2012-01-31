@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="adresForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value=" Adres " />
+				<h:selectOneMenu value="#{studentBean.adresId}">
+					<f:selectItems value="#{studentBean.allAdresy}" var="adres"
+						itemValue="#{adres.id}" itemLabel="#{adres.ulica} #{adres.miejscowosc} #{adres.kraj} #{adres.zipCode} #{adres.ulicanr}"/>
+				</h:selectOneMenu>
+
+				<h:outputText value="Student" />
+				<h:selectOneMenu value="#{studentBean.studentId}">
+					<f:selectItems value="#{studentBean.allStudents}" var="student"
+						itemValue="#{student.id}" itemLabel="#{student.firstName} #{student.lastName} #{student.pin} #{student.dateOfBirth} #{student.indeks}" />
+				</h:selectOneMenu>
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="Przypisz" action="#{studentBean.przypiszAdres}" />
+
+			<h:panelGrid>
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

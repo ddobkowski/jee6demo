@@ -1,14 +1,17 @@
 package com.example.jeedemo.web;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.example.jeedemo.domain.Adres;
 import com.example.jeedemo.domain.Wydzial;
 import com.example.jeedemo.domain.Student;
+import com.example.jeedemo.service.AdresManager;
 import com.example.jeedemo.service.StudentManager;
 import com.example.jeedemo.service.WydzialManager;
 
@@ -30,7 +33,25 @@ public class StudentFormBean implements Serializable {
 	
 	@Inject
 	private WydzialManager sm;
-
+	
+	@Inject
+	private AdresManager am;
+	
+	private Long adresId;
+	private Long studentId;
+	
+	public Long getAdresId() {
+		return adresId;
+	}
+	public void setAdresId(Long  adresId) {
+		this.adresId =  adresId;
+	}
+	public Long getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
+	}
 	public Student getStudent() {
 		return student;
 	}
@@ -47,7 +68,13 @@ public class StudentFormBean implements Serializable {
 		wydzialy.setWrappedData(pm.getOwnedWydzial(studentToShow));
 		return wydzialy;
 	}
-	
+	public List<Adres> getAllAdresy() {
+		return am.getAllAdres();
+	}
+	public String przypiszAdres() {
+		pm.adresStudent(studentId,  adresId);
+		return null;
+	}
 	// Actions
 	public String addStudent() {
 		pm.addStudent(student);

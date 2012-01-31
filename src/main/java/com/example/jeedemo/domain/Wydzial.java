@@ -13,7 +13,6 @@ public class Wydzial {
 	private Long id;
 	private String nazwa;
 	private String skrot;
-	private boolean editable;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
@@ -34,10 +33,5 @@ public class Wydzial {
 	public void setNazwa(String nazwa) {
 		this.nazwa = nazwa;
 	}
-	public boolean isEditable() {
-		return editable;
-		}
-		public void setEditable(boolean editable) {
-		this.editable = editable;
-		}
+
 }

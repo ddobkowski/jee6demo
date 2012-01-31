@@ -32,7 +32,6 @@ public class Adres {
 	private String zipCode = "";
 	private String ulicanr="";
 	private List<Student> student = new ArrayList<Student>();
-	private boolean editable;
 	
 
 	@Id
@@ -91,10 +90,4 @@ public class Adres {
 	}
 
 
-	public boolean isEditable() {
-		return editable;
-		}
-		public void setEditable(boolean editable) {
-		this.editable = editable;
-		}
 }

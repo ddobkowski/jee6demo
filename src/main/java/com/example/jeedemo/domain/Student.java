@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,7 +34,6 @@ public class Student {
 	private Date dateOfBirth = new Date();
 	private String indeks="";
 	
-	private boolean editable;
 	private List<Wydzial> wydzial = new ArrayList<Wydzial>();
 
 	@Id
@@ -83,7 +83,7 @@ public class Student {
 	}
 
 	// Be careful here, both with lazy and eager fetch type
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public List<Wydzial> getWydzial() {
 		return wydzial;
 	}
@@ -91,10 +91,5 @@ public class Student {
 		this.wydzial = wydzial;
 	}
 
-	public boolean isEditable() {
-		return editable;
-		}
-		public void setEditable(boolean editable) {
-		this.editable = editable;
-		}
+
 }
