@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQuery(name = "wydzial.all", query = "Select c from Wydzial c ")
@@ -28,12 +31,15 @@ public class Wydzial {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@NotNull
+	@Pattern(regexp="[A-Z]+")
 	public String getSkrot() {
 		return skrot;
 	}
 	public void setSkrot(String skrot) {
 		this.skrot = skrot;
 	}
+	@Size(min = 2)
 	public String getNazwa() {
 		return nazwa;
 	}

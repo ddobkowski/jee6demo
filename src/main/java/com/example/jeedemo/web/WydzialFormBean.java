@@ -69,6 +69,7 @@ public class WydzialFormBean implements Serializable {
 	}
 	public String przypiszWydzial() {
 		sm.przypiszWydzial(studentId,  wydzialId);
+		pm.przypiszWydzial(studentId, wydzialId);
 		return null;
 	}
 	// Actions

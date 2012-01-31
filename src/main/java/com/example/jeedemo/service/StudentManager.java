@@ -26,7 +26,14 @@ public class StudentManager {
 		student = em.find(Student.class, student.getId());
 		em.remove(student);
 	}
+	public void przypiszWydzial(Long studentId, Long wydzialId) {
 
+		Student student = em.find(Student.class, studentId);
+		Wydzial wydzial = em.find(Wydzial.class, wydzialId);
+		
+
+		wydzial.getStudent().add(student);
+	}
 	@SuppressWarnings("unchecked")
 	public List<Student> getAllStudents() {
 		return em.createNamedQuery("student.all").getResultList();

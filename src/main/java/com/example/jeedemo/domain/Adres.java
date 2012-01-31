@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -44,6 +46,7 @@ public class Adres {
 	}
 	
 	@Size(min = 2, max = 20)
+	@Pattern(regexp="[A-Z][a-z]+")
 	public String getUlica() {
 		return ulica;
 	}
@@ -51,6 +54,7 @@ public class Adres {
 		this.ulica = ulica;
 	}
 	@Size(min = 2, max = 20)
+	@Pattern(regexp="[A-Z][a-z]+")
 	public String getMiejscowosc() {
 		return miejscowosc;
 	}
@@ -58,13 +62,14 @@ public class Adres {
 		this.miejscowosc = miejscowosc;
 	}
 	@Size(min = 2)
+	@Pattern(regexp="[A-Z][a-z]+")
 	public String getKraj() {
 		return kraj;
 	}
 	public void setKraj(String kraj) {
 		this.kraj = kraj;
 	}
-	@Size(min = 2)
+	@NotNull
 	public String getUlicanr() {
 		return ulicanr;
 	}
@@ -73,6 +78,7 @@ public class Adres {
 	}
 
 	@Size(min = 2)
+	@Pattern(regexp = "[0-9]{2}-[0-9]{3}")
 	public String getZipCode() {
 		return zipCode;
 	}
