@@ -36,6 +36,11 @@
 						action="#{studentBean.deleteStudent}" />
 					<h:commandLink value=" Details " action="#{studentBean.showDetails}"/>
 				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}"
+				action="#{studentBean.zaladujDoEdycji}"/>
+				</h:column>
 
 			</h:dataTable>
 		</h:form>

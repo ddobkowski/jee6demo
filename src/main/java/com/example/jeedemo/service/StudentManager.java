@@ -21,7 +21,15 @@ public class StudentManager {
 		student.setId(null);
 		em.persist(student);
 	}
-
+	public void editStudent(Student student){
+		em.merge(student);
+		
+	}
+	public Student zaladujDoEdycji(Student student){
+		student=em.find(Student.class, student.getId());
+		return student;
+		
+	}
 	public void deleteStudent(Student student) {
 		student = em.find(Student.class, student.getId());
 		em.remove(student);

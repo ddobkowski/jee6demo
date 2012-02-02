@@ -26,7 +26,15 @@ public class WydzialManager {
 		wydzial.setId(null);
 		em.persist(wydzial);
 	}
-
+	public void editWydzial(Wydzial wydzial){
+		em.merge(wydzial);
+		
+	}
+	public Wydzial zaladujDoEdycji(Wydzial wydzial){
+		wydzial=em.find(Wydzial.class, wydzial.getId());
+		return wydzial;
+		
+	}
 	public void deleteWydzial(Wydzial wydzial) {
 		wydzial = em.find(Wydzial.class, wydzial.getId());
 		em.remove(wydzial);

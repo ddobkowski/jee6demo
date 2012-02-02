@@ -30,7 +30,19 @@ public class AdresManager {
 		adres = em.find(Adres.class, adres.getId());
 		em.remove(adres);
 	}
-
+	public void editAdres(Adres adres){
+		em.merge(adres);
+		
+	}
+	public Adres zaladujDoEdycji(Adres adres){
+		adres=em.find(Adres.class, adres.getId());
+		return adres;
+		
+	}
+public Adres lastAdres(Adres adres){
+	adres=em.find(Adres.class, adres.getId());
+	return adres;
+}
 	@SuppressWarnings("unchecked")
 	public List<Adres> getAllAdres() {
 		return em.createNamedQuery("adres.all").getResultList();

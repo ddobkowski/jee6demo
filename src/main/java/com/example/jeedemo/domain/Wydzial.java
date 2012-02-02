@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -52,5 +53,5 @@ public class Wydzial {
 	}
 	public void setStudent(List<Student> student) {
 		this.student = student;
-	}
+	}	
 }

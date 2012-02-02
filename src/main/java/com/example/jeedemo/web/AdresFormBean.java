@@ -57,14 +57,27 @@ public class AdresFormBean implements Serializable {
 		students.setWrappedData(pm.getOwnedStudents(adresToShow));
 		return students;
 	}
-	
+	public Adres lastAdres()
+	{
+		adres=pm.lastAdres(this.adres);
+		return adres;
+	}
 	// Actions
-	public String addAdres() {
+	public void addAdres() {
 		pm.addAdres(adres);
+		//return "showAdresy";
+		//return null;
+	}
+	public String editAdres() {
+		pm.editAdres(this.adres);	
 		return "showAdresy";
 		//return null;
 	}
-
+	public String zaladujDoEdycji(){
+		Adres adresToEdit = adresy.getRowData();
+		this.adres=pm.zaladujDoEdycji(adresToEdit);
+		return "editAdres.xhtml";
+	}
 	public String deleteAdres() {
 		Adres adresToDelete = adresy.getRowData();
 		pm.deleteAdres(adresToDelete);

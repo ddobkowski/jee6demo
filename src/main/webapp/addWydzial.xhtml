@@ -22,7 +22,7 @@
 				
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.personFormOKButton}"
+			<h:commandButton value="#{msg.WydzialAddLabel}"
 				action="#{wydzialBean.addWydzial}" />
 
 			<h:panelGrid>
@@ -32,6 +32,51 @@
 			</h:panelGrid>
 
 		</h:form>
+		<h:form id="personForm">
+			<h:panelGrid columns="2">
 
+				<h:outputText value="#{msg.Student} " />
+				<h:selectOneMenu value="#{wydzialBean.studentId}">
+					<f:selectItems value="#{wydzialBean.allStudents}" var="student"
+						itemValue="#{student.id}" itemLabel="#{student.firstName}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="#{msg.Wydzial}" />
+				<h:selectOneMenu value="#{wydzialBean.wydzialId}">
+					<f:selectItems value="#{wydzialBean.availableWydzial}" var="wydzial"
+						itemValue="#{wydzial.id}" itemLabel="#{wydzial.skrot} #{wydzial.nazwa}" />
+				</h:selectOneMenu>
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.Assign}" action="#{wydzialBean.przypiszWydzial}" />
+		</h:form>
+			<h:form>
+			<h:panelGrid columns="2">
+			<h:dataTable value="#{wydzialBean.allWydzialy}" var="item">
+				<f:facet name="header">#{msg.WydzialAllLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.WydzialSkrotLabel}</f:facet>
+					<h:outputText value="#{item.skrot}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.WydzialNazwaLabel}</f:facet>
+					<h:outputText value="#{item.nazwa}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{wydzialBean.deleteWydzial}" />
+					<h:commandLink value=" Details " action="#{wydzialBean.showDetails}"/>
+				</h:column>
+<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}"
+				action="#{wydzialBean.zaladujDoEdycji}"/>
+				</h:column>
+			</h:dataTable>
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>

@@ -85,12 +85,21 @@ public class StudentFormBean implements Serializable {
 		return null;
 	}
 	// Actions
-	public String addStudent() {
+	public void addStudent() {
 		pm.addStudent(student);
+		//return "showStudents";
+		//return null;
+	}
+	public String editStudent() {
+		pm.editStudent(this.student);	
 		return "showStudents";
 		//return null;
 	}
-
+	public String zaladujDoEdycji(){
+		Student studentToEdit = students.getRowData();
+		this.student=pm.zaladujDoEdycji(studentToEdit);
+		return "editStudent.xhtml";
+	}
 	public String deleteStudent() {
 		Student studentToDelete = students.getRowData();
 		pm.deleteStudent(studentToDelete);

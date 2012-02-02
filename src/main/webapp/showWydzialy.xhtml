@@ -23,7 +23,11 @@
 						action="#{wydzialBean.deleteWydzial}" />
 					<h:commandLink value=" Details " action="#{wydzialBean.showDetails}"/>
 				</h:column>
-
+<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}"
+				action="#{wydzialBean.zaladujDoEdycji}"/>
+				</h:column>
 			</h:dataTable>
 		</h:form>
 

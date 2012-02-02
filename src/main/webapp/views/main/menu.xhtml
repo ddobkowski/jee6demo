@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
   <div>
+  <f:view locale="#{language.locale}"/>
 	<h:form>
 	  <ul>
 		<li>
@@ -13,43 +14,32 @@
 		</li>
 		<li>
 		  <h:commandLink action="add?faces-redirect=true">
-			<h:outputText value="#{msg.personAddLabel}" />
+			<h:outputText value="#{msg.personAllLabel}" />
 		  </h:commandLink></li>
 		
 			<li>
 		  <h:commandLink action="addAdres?faces-redirect=true">
-			<h:outputText value="#{msg.AdresAddLabel}" />
+			<h:outputText value="#{msg.AdresAllLabel}" />
 		  </h:commandLink></li>
 		
 			<li>
 		  <h:commandLink action="addWydzial?faces-redirect=true">
-			<h:outputText value="#{msg.WydzialAddLabel}" />
+			<h:outputText value="#{msg.WydzialAllLabel}" />
 		  </h:commandLink></li>
 		<li>
-		  <h:commandLink action="showStudents?faces-redirect=true">
-			 <h:outputText value="#{msg.personAllLabel}" />
-		  </h:commandLink>
-		</li>
-			<li>
-		  <h:commandLink action="showAdresy?faces-redirect=true">
-			 <h:outputText value="#{msg.AdresAllLabel}" />
-		  </h:commandLink>
-		</li>
-			<li>
-		  <h:commandLink action="showWydzialy?faces-redirect=true">
-			 <h:outputText value="#{msg.WydzialAllLabel}" />
-		  </h:commandLink>
-		</li>
-		<li>
-		  <h:commandLink action="przypiszWydzial?faces-redirect=true">
-			 <h:outputText value=" Przypisz Wydzial studentowi" />
-		  </h:commandLink>
-		</li>
-			<li>
-		  <h:commandLink action="przypiszStudenta?faces-redirect=true">
-			 <h:outputText value=" Przypisz Adresowi studentow" />
-		  </h:commandLink>
-		</li>
+		
+<h:commandLink itemLabel="Angielski"
+itemValue="en" actionListener="#{language.choose}">
+<h:outputText value="#{msg.languageEnglish}"/>
+<f:param value="en" name="locale"/>
+</h:commandLink>
+</li><li>
+<h:commandLink itemLabel="Polski"
+itemValue="pl" actionListener="#{language.choose}">
+<h:outputText value="#{msg.languagePolish}"/>
+<f:param value="pl" name="locale"/>
+</h:commandLink>
+</li>
 	</ul>
    </h:form>
   </div>

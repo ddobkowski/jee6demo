@@ -8,7 +8,7 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 	<ui:define name="content">
-		<h:form id="personForm">
+		<h:form id="studentForm">
 		<f:event type="postValidate" listener="#{studentBean.validatePinDob}" />
 			<h:panelGrid columns="2">
 
@@ -31,11 +31,12 @@
 				</rich:calendar>
 				<h:outputText value="#{msg.StudentIndeksLabel}" />
 				<h:inputText id="indeks" value="#{studentBean.student.indeks}" validator="#{studentBean.uniqueIndeks}" required="#{true}">
+				  <f:validateLongRange minimum="100000" maximum="200000" />
 				</h:inputText>
 			
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.personFormOKButton}"
+			<h:commandButton value="#{msg.personAddLabel}"
 				action="#{studentBean.addStudent}" />
 
 			<h:panelGrid>
@@ -43,8 +44,69 @@
 				<h:messages id="messages" showDetail="#{true}"
 					showSummary="#{false}" />
 			</h:panelGrid>
+		</h:form>
+	<h:form id="przypiszForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value=" #{msg.Student} " />
+				<h:selectOneMenu value="#{wydzialBean.studentId}">
+					<f:selectItems value="#{wydzialBean.allStudents}" var="student"
+						itemValue="#{student.id}" itemLabel="#{student.firstName}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="#{msg.Wydzial}" />
+				<h:selectOneMenu value="#{wydzialBean.wydzialId}">
+					<f:selectItems value="#{wydzialBean.availableWydzial}" var="wydzial"
+						itemValue="#{wydzial.id}" itemLabel="#{wydzial.skrot} #{wydzial.nazwa}" />
+				</h:selectOneMenu>
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.Assign}" action="#{wydzialBean.przypiszWydzial}" />
+
+		
 
 		</h:form>
+			<h:form>
+			<h:dataTable value="#{studentBean.allStudents}" var="item">
+				<f:facet name="header">#{msg.personAllLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.personFirstNameLabel}</f:facet>
+					<h:outputText value="#{item.firstName}" />
+				</h:column>
+	<h:column>
+					<f:facet name="header">#{msg.StudentLastNameLabel}</f:facet>
+					<h:outputText value="#{item.lastName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.personPinLabel}</f:facet>
+					<h:outputText value="#{item.pin}" />
+				</h:column>
+					<h:column>
+					<f:facet name="header">#{msg.personDobLabel}</f:facet>
+					<h:outputText value="#{item.dateOfBirth}" />
+				</h:column>
+					<h:column>
+					<f:facet name="header">#{msg.StudentIndeksLabel}</f:facet>
+					<h:outputText value="#{item.indeks}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{studentBean.deleteStudent}" />
+					<h:commandLink value=" Details " action="#{studentBean.showDetails}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}"
+				action="#{studentBean.zaladujDoEdycji}"/>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+		
 
 	</ui:define>
 </ui:composition>

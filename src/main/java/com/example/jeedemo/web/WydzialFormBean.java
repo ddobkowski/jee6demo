@@ -67,15 +67,25 @@ public class WydzialFormBean implements Serializable {
 		studenci.setWrappedData(sm.getOwnedStudent(wydzialToShow));
 		return studenci;
 	}
+	public String editWydzial() {
+		sm.editWydzial(this.wydzial);	
+		return "showWydzialy";
+		//return null;
+	}
+	public String zaladujDoEdycji(){
+		Wydzial wydzialToEdit = wydzialy.getRowData();
+		this.wydzial=sm.zaladujDoEdycji(wydzialToEdit);
+		return "editWydzial.xhtml";
+	}
 	public String przypiszWydzial() {
 		sm.przypiszWydzial(studentId,  wydzialId);
 		pm.przypiszWydzial(studentId, wydzialId);
 		return null;
 	}
 	// Actions
-		public String addWydzial() {
+		public void addWydzial() {
 			sm.addWydzial(wydzial);
-			return "showWydzialy";
+			//return "showWydzialy";
 			//return null;
 		}
 

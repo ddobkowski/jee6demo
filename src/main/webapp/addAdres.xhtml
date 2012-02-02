@@ -28,7 +28,7 @@
 				
 			</h:panelGrid>
 
-			<h:commandButton value="#{msg.personFormOKButton}"
+			<h:commandButton value="#{msg.AdresAddLabel}"
 				action="#{adresBean.addAdres}" />
 
 			<h:panelGrid>
@@ -38,6 +38,65 @@
 			</h:panelGrid>
 
 		</h:form>
+		<h:form id="przypiszForm">
+			<h:panelGrid columns="2">
 
+				<h:outputText value="#{msg.Adres} " />
+				<h:selectOneMenu value="#{studentBean.adresId}">
+					<f:selectItems value="#{studentBean.allAdresy}" var="adres"
+						itemValue="#{adres.id}" itemLabel="#{adres.ulica} #{adres.miejscowosc} #{adres.kraj} #{adres.zipCode} #{adres.ulicanr}"/>
+				</h:selectOneMenu>
+
+				<h:outputText value="#{msg.Student}" />
+				<h:selectOneMenu value="#{studentBean.studentId}">
+					<f:selectItems value="#{studentBean.allStudents}" var="student"
+						itemValue="#{student.id}" itemLabel="#{student.firstName} #{student.lastName} #{student.pin} #{student.dateOfBirth} #{student.indeks}" />
+				</h:selectOneMenu>
+
+
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.Assign}" action="#{studentBean.przypiszAdres}" />
+
+
+
+		</h:form>
+		<h:form>
+			<h:dataTable value="#{adresBean.allAdresy}" var="item">
+				<f:facet name="header">#{msg.AdresAllLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.AdresUlicaLabel}</f:facet>
+					<h:outputText value="#{item.ulica}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.AdresMiejscowoscLabel}</f:facet>
+					<h:outputText value="#{item.miejscowosc}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.AdresKrajLabel}</f:facet>
+					<h:outputText value="#{item.kraj}" />
+				</h:column>
+								<h:column>
+					<f:facet name="header">#{msg.personZipCodeLabel}</f:facet>
+					<h:outputText value="#{item.zipCode}" />
+				</h:column>
+								<h:column>
+					<f:facet name="header">#{msg.AdresUlicaNrLabel}</f:facet>
+					<h:outputText value="#{item.ulicanr}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{adresBean.deleteAdres}" />
+					<h:commandLink value=" Details " action="#{adresBean.showDetails}"/>
+				</h:column>
+<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionEdit}"
+				action="#{adresBean.zaladujDoEdycji}"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
